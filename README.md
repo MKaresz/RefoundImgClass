@@ -20,26 +20,24 @@ Asynchronous client that:
 Timed PowerShell‑registered Task Scheduler actions for inference and end‑of‑day analytics.  
 Client CLI flags support ad‑hoc runs for any chosen day and are compatible with cron‑style nightly scheduling.
 
----
-
-# `client.py --help`
+```
 Usage: client.py [OPTIONS]
-batch-processing client that sends images to FastAPI inference server and
-performs daily analytics.
-Tasks: Inference, Analytics, Reload-ML model
-- gets server status
-- reads images from disk
-- batches them
-- sends them to the FastAPI server
-- logs predictions
-- runs analytics
-- calls model re-load on server
+
+  batch-processing client that sends images to  FastAPI  inference server and 
+  performs daily analytics.
+
+  Tasks: Inference, Analytics, Reload-ML model     - gets server status     - 
+  reads images from disk     - batches them     - sends them to the FastAPI   
+  server     - logs predictions     - runs analytics     - calls model re-load
+  on server
+
 Options:
---health          Get server status, info and version number.
---inference       Inference on today's input images under: ./raw/YYYY-MM-DD/
---analytics       Model analytics on yesterday's inferences:
-./predictions/YYYY-MM-DD.parquet
---day [%Y-%m-%d]  Optional date for analytics (format: YYYY-MM-DD)
---model_reload    Ask server to update model to latest champion or default
-model.
---help            Show this message and exit.
+  --health          Get server status, info and version number.
+  --inference       Inference on today's input images under: ./raw/YYYY-MM-DD/
+  --analytics       Model analytics on yesterday's inferences:
+                    ./predictions/YYYY-MM-DD.parquet
+  --day [%Y-%m-%d]  Optional date for analytics (format: YYYY-MM-DD)
+  --model_reload    Ask server to update model to latest champion or default  
+                    model.
+  --help            Show this message and exit.
+  ```

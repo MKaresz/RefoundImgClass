@@ -31,6 +31,7 @@ SERVER_VERSION = "0.31"
 MIN_CONFIDENCE = 0.6
 MODEL_NAME = "CNN_Simple"
 ADMIN_API_KEY = os.getenv("ADMIN_API_KEY")
+MLFLOW_URI = os.getenv("MLFLOW_TRACKING_URI")
 
 # output classes for human readable prediction
 CLASSES = [
@@ -48,8 +49,7 @@ _reload_lock = asyncio.Lock()
 # -------------------------------------------------------------------
 # MLflow setup
 # -------------------------------------------------------------------
-mlflow_uri = os.environ["MLFLOW_TRACKING_URI"]
-mlflow.set_tracking_uri(mlflow_uri)
+mlflow.set_tracking_uri(MLFLOW_URI)
 client = MlflowClient()
 
 # -------------------------------------------------------------------
@@ -86,9 +86,6 @@ def load_ml_model(model_name=MODEL_NAME) -> PyFuncModel:
 async def verify_api_key(x_api_key: str = Header(default=None)) -> bool:
     """
     Require X-API-Key header to access protected endpoints.
-
-    Returns:
-        bool: True on success or exception
     """
     if x_api_key != ADMIN_API_KEY:
         raise HTTPException(

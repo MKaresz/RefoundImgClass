@@ -2,6 +2,8 @@
 $scriptDirectory = "E:\ImageClassificationRefundDep"
 cd $scriptDirectory
 .\venv\Scripts\activate.bat
+Start-Process powershell.exe -ArgumentList "-File `"$scriptDirectory\start-mlflow.ps1`""
+Start-Process powershell.exe -ArgumentList "-File `"$scriptDirectory\start-docker.ps1`""
 
 # Logging
 $logPath = "$scriptDirectory\output_$(Get-Date -Format 'yyyyMMdd_HHmmss').log"
